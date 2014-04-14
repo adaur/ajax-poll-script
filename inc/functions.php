@@ -79,7 +79,7 @@ if (isset($action))
 			$add_ip = "INSERT INTO poll_ip (ip, poll_id) VALUES ('".mysql_real_escape_string($_SERVER['REMOTE_ADDR'])."', ".$poll_id.")";
 			mysql_query($add_ip) or die('Error, insert query failed');
 			
-			setcookie("poll" . $poll_id, 1, time()+31556926, "/", "127.0.0.1");
+			setcookie("poll" . $poll_id, 1, time()+31556926, "/", html_special_chars($_SERVER['REMOTE_ADDR']));
 			getPollResults($poll_id);
 		}
 	}
